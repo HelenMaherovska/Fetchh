@@ -1,0 +1,81 @@
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+header {
+  background: linear-gradient(rgba(210, 57, 66, 0.8), rgba(210, 57, 66, 0.8)), url('../img/bg.png') no-repeat center;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  color: #fff;
+  line-height: normal;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+.heading-wrapper {
+  margin: 30px auto 50px;
+}
+
+h2.heading {
+  font-size: 34px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+p.subheading {
+  font-size: 24px;
+  font-weight: normal;
+  padding: 0 103px;
+}
+
+.nav-tabs {
+  background: #212121;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-tabs>li {
+  min-width: calc(100%/3);
+}
+
+.nav-tabs>li>a {
+  border-radius: 0px 15px 0px 0px;
+  margin-right: 0;
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.nav>li.active>a:focus, .nav>li.active>a:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  border: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.nav-tabs>li>a {
+  border: 0;
+}
+
+.nav-tabs>li>a.sidedish {
+  border-radius: 0;
+}
+
+.nav li:hover a {
+  border: none;
+  background: none;
+}
