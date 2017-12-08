@@ -16,9 +16,12 @@ header {
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
   position: absolute;
+}
+
+.logo>img {
+  width: 90px;
+  height: 90px;
 }
 
 .heading-wrapper {
@@ -26,15 +29,15 @@ header {
 }
 
 h2.heading {
-  font-size: 34px;
+  font-size: 25px;
   font-weight: 900;
   margin-bottom: 10px;
 }
 
 p.subheading {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: normal;
-  padding: 0 103px;
+  padding: 0 160px;
 }
 
 .nav-tabs {
@@ -52,7 +55,7 @@ p.subheading {
   border-radius: 0px 15px 0px 0px;
   margin-right: 0;
   text-align: center;
-  font-size: 32px;
+  font-size: 20px;
   color: #fff;
 }
 
@@ -78,4 +81,79 @@ p.subheading {
 .nav li:hover a {
   border: none;
   background: none;
+}
+
+.item .circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 20px;
+}
+
+.item .selected .circle {
+  background: #FB4F6B;
+}
+
+.item .unselected .circle {
+  background: #EAEAEA;
+}
+
+.selected .circle::before {
+  background: url('../img/icons/check-icon.svg') no-repeat;
+  content: '';
+  display: block;
+  width: 15px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.tab-content {
+  margin: 30px 20px 0;
+}
+
+.tab-content .item {
+  border-top: 1px solid #C7C7C7;
+}
+
+.item .content-wrapper {
+  padding: 20px 30px 20px 10px;
+  justify-content: space-between;
+}
+
+.item img {
+  cursor: pointer;
+}
+
+.content-wrapper, .left-content, .right-content {
+  display: flex;
+}
+
+.left-content, .right-content {
+  align-items: center;
+}
+
+.item-name {
+  margin-right: 50px;
+}
+
+.selected .item-name {
+  color: #212121;
+}
+
+.unselected .item-name {
+  color: #919191;
+}
+
+.price {
+  color: #FB4F6B;
+  margin-right: 50px;
+}
+
+.edit-icon {
+  margin-right: 12px;
 }
