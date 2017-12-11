@@ -1,0 +1,29 @@
+[
+    {
+        "menuOption": {
+            "id": 1,
+            "optionType": "MILK",
+            "name": "soy",
+            "price": 2
+        },
+        "selected": false
+    },
+    {
+        "menuOption": {
+            "id": 2,
+            "optionType": "MILK",
+            "name": "regular",
+            "price": 0.75
+        },
+        "selected": false
+    },
+    {
+        "menuOption": {
+            "id": 4,
+            "optionType": "MILK",
+            "name": "qq",
+            "price": 2
+        },
+        "selected": false
+    }
+]

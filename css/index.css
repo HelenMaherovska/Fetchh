@@ -1,5 +1,7 @@
 body {
   font-family: 'Nunito', sans-serif;
+  /*min-height: 100vh;
+  position: relative;*/
 }
 
 header {
@@ -91,11 +93,11 @@ p.subheading {
   margin-right: 20px;
 }
 
-.item .selected .circle {
+.item.selected .left-content .circle {
   background: #FB4F6B;
 }
 
-.item .unselected .circle {
+.item.unselected .left-content .circle {
   background: #EAEAEA;
 }
 
@@ -153,7 +155,107 @@ p.subheading {
   color: #FB4F6B;
   margin-right: 50px;
 }
-
+.edit-icon, .delete-icon {
+  border: 0;
+  background: none;
+  outline: none;
+  padding: 0
+}
 .edit-icon {
   margin-right: 12px;
+}
+
+.item.add-new .left-content .circle {
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.item.add-new {
+  cursor: pointer;
+  border-bottom: 1px solid #C7C7C7;
+  margin-bottom: 250px;
+}
+
+.item-name.add-new-text {
+  text-transform: uppercase;
+  font-style: Regular;
+  font-weight: 500;
+}
+
+.add-new .circle::before {
+  background: url('../img/icons/cross-icon.svg') no-repeat;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-wrapper {
+  margin: 50px 0;
+}
+
+.add-btn {
+  min-height: 35px;
+  background: #212121;
+  color: #fff;
+  text-transform: uppercase;
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+
+@media (max-width: 705px) {
+  p.subheading {
+    width: calc(100% - 100px);
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    position: relative;
+    overflow-x: hidden;
+  }
+  .logo>img {
+    width: 60px;
+    height: 60px;
+  }
+  p.subheading {
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  p.heading {
+    font-size: 18px;
+  }
+  .nav-tabs>li>a {
+    font-size: 14px;
+  }
+  .tab-content .item {
+    font-size: 13px;
+  }
+  .item-name {
+     margin-right: 0px;
+  }
+  .price {
+    margin-right: 14px;
+  }
+  .item .circle {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+  }
+  .edit-icon>img, .delete-icon>img {
+    width: 22px;
+    height: 22px;
+  }
+  .item .content-wrapper {
+    padding: 20px 12px 20px 5px;
+  }
 }
