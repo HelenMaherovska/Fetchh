@@ -143,25 +143,22 @@ p.subheading {
   margin-right: 50px;
 }
 
-.selected .item-name {
+.selected .item-name, .unselected .item-name {
   color: #212121;
-}
-
-.unselected .item-name {
-  color: #919191;
+  text-transform: capitalize;
 }
 
 .price {
   color: #FB4F6B;
   margin-right: 50px;
 }
-.edit-icon, .delete-icon {
+.edit-icon, .delete-icon, .cancel-icon, .save-icon {
   border: 0;
   background: none;
   outline: none;
   padding: 0
 }
-.edit-icon {
+.edit-icon, .save-icon {
   margin-right: 12px;
 }
 
@@ -208,6 +205,33 @@ p.subheading {
   outline: none;
   width: 100%;
 }
+input.add-item-price, input.add-item-name {
+  border-color: transparent;
+  outline: none;
+  background: #fff;
+  caret-color: #FF3F4B;
+  width: 100%;
+}
+input.add-item-name {
+  max-width: 150px;
+}
+input.add-item-price {
+  max-width: 60px;
+  text-align: right;
+}
+
+input.add-item-price::-webkit-input-placeholder, input.add-item-name::-webkit-input-placeholder {
+  color: #919191;
+}
+input.add-item-price::-moz-placeholder, input.add-item-name::-webkit-input-placeholder {
+  color: #919191;
+}
+input.add-item-price:-ms-input-placeholder, input.add-item-name::-webkit-input-placeholder {
+  color: #919191;
+}
+input.add-item-price:-moz-placeholder, input.add-item-name::-webkit-input-placeholder {
+  color: #919191;
+}
 
 @media (max-width: 705px) {
   p.subheading {
@@ -251,7 +275,7 @@ p.subheading {
     height: 22px;
     margin-right: 8px;
   }
-  .edit-icon>img, .delete-icon>img {
+  .edit-icon>img, .delete-icon>img, .save-icon>img, .cancel-icon>img {
     width: 22px;
     height: 22px;
   }
