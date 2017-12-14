@@ -1,14 +1,19 @@
 $(document).ready(function() {
 
-  loadResponces();
+  var dataArray = [];
+
+  loadData();
 
 
-  function loadResponces() {
+  function loadData() {
     $.ajax({
       type: 'GET',
       url: './data/response.json',
       success: function(data) {
-        printResponses(data);
+        dataArray = data;
+        dataArray.forEach(function(item) {
+          printItem(item);
+        });
       },
       error: function() {
         console.log("Internal Server Error. Not possible to load exercises data.");
@@ -16,14 +21,15 @@ $(document).ready(function() {
     });
   }
 
-  function printResponses(dataArr) {
-    dataArr.forEach(function(item) {
+  function printItem(item) {
       let item_elem = $('<div class="item">');
+
       if (item.selected) {
         item_elem.addClass('selected');
       } else {
         item_elem.addClass('unselected');
       }
+
       item_elem
         .append(
           $('<div class="content-wrapper">')
@@ -56,47 +62,96 @@ $(document).ready(function() {
                 $('<img src="img/icons/delete-icon.svg" alt="delete-icon">')
               )
             )
+            // .on('click', function(){
+            //
+            // }));
           )
 
-        ).prependTo($('#milk'));
-      console.log(item_elem);
-    });
+        ).appendTo($('#milk .item-container'));
   }
+
   $('.add-new').on('click', function(){
-    $('<div class="item">')
+    $(this).addClass('hidden');
+    $('<div class="item unselected">')
+    .addClass('added-item')
     .append(
       $('<div class="content-wrapper">')
       .append(
         $('<div class="left-content">')
         .append(
-          $('<p class="circle">')
-        )
-        .append(
-          $('<p class="item-name">')
+          $('<p class="circle">'),
+          $('<input placeholder="Name" id="add-item-name" class="item-name add-item-name">')
         )
       )
       .append(
         $('<div class="right-content">')
         .append(
-          $('<p class="price">')
-          .append(
-            $('<span class="currency">')
-          )
-        )
-        .append(
-          $('<button type="button" class="edit-icon">')
-          .append(
-            $('<img src="img/icons/edit-icon.svg" alt="edit-icon">')
-          )
-        )
-        .append(
-          $('<button type="button" class="delete-icon">')
-          .append(
-            $('<img src="img/icons/delete-icon.svg" alt="delete-icon">')
-          )
+          $('<input placeholder="Price" id="add-item-price" class="price add-item-price"  pattern="[0-9]">'),
+          $('<span class="currency"></span>'),
+          $('<p></p>'),
+          $('<button type="button" id="save-item" class="save-icon">')
+            .append(
+              $('<img src="img/icons/save-icon.svg" alt="save-icon">')
+            ).on('click', function(){
+              var item_price =  $('#add-item-price').val();
+              var item_name =  $('#add-item-name').val();
+
+              var newItem = {
+                  "menuOption": {
+                      "optionType": "MILK",
+                      "name": item_name,
+                      "price": item_price
+                  },
+                  "selected": false
+              }
+
+              // $.ajax({
+              //   type: 'POST',
+              //   url: './data/response.json',
+              //   data: newItem,
+              //   success: function(data) {
+                      console.log(newItem);
+                      dataArray.push(newItem);
+                      $('.added-item').remove();
+                      $('.add-new').removeClass('hidden');
+                      printItem(newItem);
+                      //dataArray.push(data); // new item with ID
+                      //printItem(data);
+                      console.log(dataArray);
+                      // append
+              //   },
+              //   error: function() {
+              //     console.log("Internal Server Error. Not possible to load exercises data.");
+              //   }
+              // });
+            }),
+          $('<button type="button" class="cancel-icon">')
+            .append(
+              $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
+            )
         )
       )
 
     ).insertBefore($(this));
+  });
+
+  $('#save-item').on('click', function(){
+
+    var item_price =  $('#add-item-price').val();
+    var item_name =  $('#add-item-name').val();
+
+    console.console.log(item_name);
+    console.console.log(item_price);
+
+    // $.ajax({
+    //   type: 'POST',
+    //   url: './data/response.json',
+    //   success: function(data) {
+    //     printResponses(data);
+    //   },
+    //   error: function() {
+    //     console.log("Internal Server Error. Not possible to load exercises data.");
+    //   }
+    // });
   });
 });
