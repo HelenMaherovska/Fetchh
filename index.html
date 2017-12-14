@@ -33,12 +33,29 @@
   <section class="option-content">
     <div class="container-fluid">
       <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#milk">Milk</a></li>
+        <li class="active"><a data-toggle="tab" href="#milk">Milk</a></li>
         <li><a data-toggle="tab" href="#flavours">Flavours</a></li>
         <li><a data-toggle="tab" class='sidedish' href="#sidedish">Sidedish</a></li>
       </ul>
       <div class="tab-content">
-        <div id="milk" class="tab-pane">
+        <div id="milk" class="tab-pane active">
+          <!-- <div class="item selected">
+            <div class="content-wrapper">
+              <div class="left-content">
+                <p class="circle"></p>
+                <span class="item-name">Regulaaaaaar</span>
+              </div>
+              <div class="right-content">
+                <span class="price">$4.00</span>
+                <button type="button" class="edit-icon">
+                  <img src="img/icons/edit-icon.svg" alt="edit-icon">
+                </button>
+                <button type="button" name="button" class="delete-icon">
+                  <img src="img/icons/delete-icon.svg" alt="delete-icon">
+                </button>
+              </div>
+            </div>
+          </div> -->
           <!-- <div class="item selected">
             <div class="content-wrapper">
               <div class="left-content">
@@ -181,43 +198,43 @@
               </div>
               <div class="right-content">
                 <p class="price"><span class="currency">$</span>4.00</p>
-                <button type="button" class="edit-icon">
-                  <img src="img/icons/edit-icon.svg" alt="edit-icon">
-                </button>
-                <button type="button" name="button" class="delete-icon" data-toggle="modal" data-target="#myModal">
-                  <img src="img/icons/delete-icon.svg" alt="delete-icon">
-                </button>
+                  <button type="button" class="edit-icon">
+                    <img src="img/icons/edit-icon.svg" alt="edit-icon">
+                  </button>
+                  <button type="button" name="button" class="delete-icon" data-toggle="modal" data-target="#myModal">
+                    <img src="img/icons/delete-icon.svg" alt="delete-icon">
+                  </button>
               </div>
             </div>
           </div> -->
-  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+          <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#deleteModal">Open Modal</button> -->
 
-  <!-- Modal -->
-  <div class="modal fade centered-modal" id="myModal" role="dialog">
-    <div class="modal-dialog">
+          <!-- Modal -->
+          <div class="modal fade centered-modal" id="deleteItemModal" role="dialog">
+            <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content text-center">
-        <div class="modal-header">
-          <h4 class="modal-title delete">Delete item?</h4>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete this item?</p>
-        </div>
-        <div class="modal-footer">
-                    <button type="button" class="btn delete-no" data-dismiss="modal">No</button>
-          <button type="button" class="btn delete-yes" data-dismiss="modal">Yes</button>
-        </div>
-      </div>
+              <!-- Modal content-->
+              <div class="modal-content text-center">
+                <div class="modal-header">
+                  <h4 class="modal-title delete">Delete item?</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this item?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id='delete-item-no' class="btn delete-no" data-dismiss="modal">No</button>
+                  <button type="button" id='delete-item-yes' class="btn delete-yes" data-dismiss="modal">Yes</button>
+                </div>
+              </div>
 
-    </div>
-  </div>
+            </div>
+          </div>
 
         </div>
         <div id="flavours" class="tab-pane">
           <p>my</p>
           <div class="btn-wrapper">
-             <a href="" class="add-item">
+            <a href="" class="add-item">
                <button class="add-btn">Done</button>
              </a>
           </div>
@@ -225,7 +242,7 @@
         <div id="sidedish" class="tab-pane">
           <p>name is Olena</p>
           <div class="btn-wrapper">
-               <button class="add-btn">Done</button>
+            <button class="add-btn">Done</button>
           </div>
         </div>
       </div>
@@ -237,6 +254,7 @@
   <!-- <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="lib/bootstrap/css/bootstrap.min.css"></script>
   <script type="text/javascript" src="lib/bootstrap/css/bootstrap-theme.min.css"></script> -->
+  <script src="jquery.editable.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 

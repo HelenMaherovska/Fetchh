@@ -39,38 +39,57 @@ $(document).ready(function() {
               $('<p class="circle">')
             )
             .append(
-              $('<p class="item-name">').text(item.menuOption.name)
+              $('<span class="item-name">').text(item.menuOption.name)
             )
           )
           .append(
             $('<div class="right-content">')
             .append(
-              $('<p class="price">').text('\u00A3' + item.menuOption.price)
-              .append(
-                $('<span class="currency">')
-              )
+              $('<span class="price">').text('\u00A3' + item.menuOption.price)
             )
             .append(
-              $('<button type="button" class="edit-icon">')
+              $('<div class="edit-delete-wrapper">')
+            .append(
+              $('<button type="button" class="edit-icon editable">')
               .append(
                 $('<img src="img/icons/edit-icon.svg" alt="edit-icon">')
-              )
+              ).on('click', function(e){
+                var content =
+                $('<div class="save-cancel-wrapper">')
+                .append(
+
+                  $('<button type="button" id="save-item" class="save-icon">')
+                    .append(
+                      $('<img src="img/icons/save-icon.svg" alt="save-icon">')
+                    ).on('click', saveEditItem),
+                  $('<button type="button" class="cancel-icon">')
+                    .append(
+                      $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
+                    )
+
+                )
+                $(this).parent().replaceWith(content);
+              }),
             )
             .append(
-              $('<button type="button" class="delete-icon">')
+              $('<button type="button" class="delete-icon" data-toggle="modal" data-target="#deleteModal">')
               .append(
                 $('<img src="img/icons/delete-icon.svg" alt="delete-icon">')
-              )
+              ).on('click', function(){
+                $('#deleteItemModal').modal('show');
+                  $('#delete-item-yes').on('click', function(){
+                  item_elem.remove();
+                })
+              }),
             )
-            // .on('click', function(){
-            //
-            // }));
+           )
           )
 
         ).appendTo($('#milk .item-container'));
   }
 
-  $('.add-new').on('click', function(){
+
+  var addNewItem = function(){
     $(this).addClass('hidden');
     $('<div class="item unselected">')
     .addClass('added-item')
@@ -89,69 +108,88 @@ $(document).ready(function() {
           $('<input placeholder="Price" id="add-item-price" class="price add-item-price"  pattern="[0-9]">'),
           $('<span class="currency"></span>'),
           $('<p></p>'),
-          $('<button type="button" id="save-item" class="save-icon">')
-            .append(
-              $('<img src="img/icons/save-icon.svg" alt="save-icon">')
-            ).on('click', function(){
-              var item_price =  $('#add-item-price').val();
-              var item_name =  $('#add-item-name').val();
+          $('<div class="save-cancel-wrapper">')
+          .append(
+            $('<button type="button" id="save-item" class="save-icon">')
+              .append(
+                $('<img src="img/icons/save-icon.svg" alt="save-icon">')
+              ).on('click', function(){
+                var item_price =  $('#add-item-price').val();
+                var item_name =  $('#add-item-name').val();
 
-              var newItem = {
-                  "menuOption": {
-                      "optionType": "MILK",
-                      "name": item_name,
-                      "price": item_price
-                  },
-                  "selected": false
-              }
+                var newItem = {
+                    "menuOption": {
+                        "optionType": "MILK",
+                        "name": item_name,
+                        "price": item_price
+                    },
+                    "selected": false
+                }
 
-              // $.ajax({
-              //   type: 'POST',
-              //   url: './data/response.json',
-              //   data: newItem,
-              //   success: function(data) {
-                      console.log(newItem);
-                      dataArray.push(newItem);
-                      $('.added-item').remove();
-                      $('.add-new').removeClass('hidden');
-                      printItem(newItem);
-                      //dataArray.push(data); // new item with ID
-                      //printItem(data);
-                      console.log(dataArray);
-                      // append
-              //   },
-              //   error: function() {
-              //     console.log("Internal Server Error. Not possible to load exercises data.");
-              //   }
-              // });
-            }),
-          $('<button type="button" class="cancel-icon">')
-            .append(
-              $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
-            )
+                // $.ajax({
+                //   type: 'POST',
+                //   url: './data/response.json',
+                //   data: newItem,
+                //   success: function(data) {
+                        console.log(newItem);
+                        dataArray.push(newItem);
+                        $('.added-item').remove();
+                        $('.add-new').removeClass('hidden');
+                        printItem(newItem);
+                        //dataArray.push(data); // new item with ID
+                        //printItem(data);
+                        console.log(dataArray);
+                        // append
+                //   },
+                //   error: function() {
+                //     console.log("Internal Server Error. Not possible to load exercises data.");
+                //   }
+                // });
+              }),
+            $('<button type="button" class="cancel-icon">')
+              .append(
+                $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
+              )
+          )
         )
       )
 
     ).insertBefore($(this));
-  });
+  }
 
-  $('#save-item').on('click', function(){
+var saveNewItem = function(){
 
-    var item_price =  $('#add-item-price').val();
-    var item_name =  $('#add-item-name').val();
+  var item_price =  $('#add-item-price').val();
+  var item_name =  $('#add-item-name').val();
 
-    console.console.log(item_name);
-    console.console.log(item_price);
+  console.console.log(item_name);
+  console.console.log(item_price);
 
-    // $.ajax({
-    //   type: 'POST',
-    //   url: './data/response.json',
-    //   success: function(data) {
-    //     printResponses(data);
-    //   },
-    //   error: function() {
-    //     console.log("Internal Server Error. Not possible to load exercises data.");
-    //   }
-    // });
-  });
+  // $.ajax({
+  //   type: 'POST',
+  //   url: './data/response.json',
+  //   success: function(data) {
+  //     printResponses(data);
+  //   },
+  //   error: function() {
+  //     console.log("Internal Server Error. Not possible to load exercises data.");
+  //   }
+  // });
+}
+var saveEditItem = function(){
+
+  // $.ajax({
+  //   type: 'POST',
+  //   url: './data/response.json',
+  //   success: function(data) {
+  //     printResponses(data);
+  //   },
+  //   error: function() {
+  //     console.log("Internal Server Error. Not possible to load exercises data.");
+  //   }
+  // });
+}
+
+  $('#save-item').on('click', saveNewItem);
+  $('.add-new').on('click', addNewItem);
 });
