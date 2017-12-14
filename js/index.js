@@ -64,11 +64,23 @@ $(document).ready(function() {
                     ).on('click', saveEditItem),
                   $('<button type="button" class="cancel-icon">')
                     .append(
-                      $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
+                      $('<img src="img/icons/cancel-icon.svg"$ alt="cancel-icon">')
                     )
-
                 )
                 $(this).parent().replaceWith(content);
+                content.parent();
+                var kek = content.parent().parent().parent();
+                // debugger;
+                kek.find('span.item-name, span.price')
+                  .css({
+                    border: "1px solid red"
+                  });
+
+                $('span.item-name, span.price').bind('click',function(){
+                  // debugger;
+                    $('span.item-name').addClass('add-item-name');
+                     $(this).attr('contentEditable',true);
+                 });
               }),
             )
             .append(
@@ -113,39 +125,7 @@ $(document).ready(function() {
             $('<button type="button" id="save-item" class="save-icon">')
               .append(
                 $('<img src="img/icons/save-icon.svg" alt="save-icon">')
-              ).on('click', function(){
-                var item_price =  $('#add-item-price').val();
-                var item_name =  $('#add-item-name').val();
-
-                var newItem = {
-                    "menuOption": {
-                        "optionType": "MILK",
-                        "name": item_name,
-                        "price": item_price
-                    },
-                    "selected": false
-                }
-
-                // $.ajax({
-                //   type: 'POST',
-                //   url: './data/response.json',
-                //   data: newItem,
-                //   success: function(data) {
-                        console.log(newItem);
-                        dataArray.push(newItem);
-                        $('.added-item').remove();
-                        $('.add-new').removeClass('hidden');
-                        printItem(newItem);
-                        //dataArray.push(data); // new item with ID
-                        //printItem(data);
-                        console.log(dataArray);
-                        // append
-                //   },
-                //   error: function() {
-                //     console.log("Internal Server Error. Not possible to load exercises data.");
-                //   }
-                // });
-              }),
+              ).on('click', saveNewItem),
             $('<button type="button" class="cancel-icon">')
               .append(
                 $('<img src="img/icons/cancel-icon.svg" alt="cancel-icon">')
@@ -162,14 +142,29 @@ var saveNewItem = function(){
   var item_price =  $('#add-item-price').val();
   var item_name =  $('#add-item-name').val();
 
-  console.console.log(item_name);
-  console.console.log(item_price);
+  var newItem = {
+      "menuOption": {
+          "optionType": "MILK",
+          "name": item_name,
+          "price": item_price
+      },
+      "selected": false
+  }
 
   // $.ajax({
   //   type: 'POST',
   //   url: './data/response.json',
+  //   data: newItem,
   //   success: function(data) {
-  //     printResponses(data);
+          console.log(newItem);
+          dataArray.push(newItem);
+          $('.added-item').remove();
+          $('.add-new').removeClass('hidden');
+          printItem(newItem);
+          //dataArray.push(data); // new item with ID
+          //printItem(data);
+          console.log(dataArray);
+          // append
   //   },
   //   error: function() {
   //     console.log("Internal Server Error. Not possible to load exercises data.");
@@ -178,18 +173,6 @@ var saveNewItem = function(){
 }
 var saveEditItem = function(){
 
-  // $.ajax({
-  //   type: 'POST',
-  //   url: './data/response.json',
-  //   success: function(data) {
-  //     printResponses(data);
-  //   },
-  //   error: function() {
-  //     console.log("Internal Server Error. Not possible to load exercises data.");
-  //   }
-  // });
 }
-
-  $('#save-item').on('click', saveNewItem);
-  $('.add-new').on('click', addNewItem);
+$('.add-new').on('click', addNewItem);
 });
